@@ -268,9 +268,10 @@ class BaseConfig(
         return True
 
     # This is used in 'add_config_call' to created the combined config_call_dict.
+    # 'meta' moved here from node
     mergebehavior = {
         "append": ['pre-hook', 'pre_hook', 'post-hook', 'post_hook', 'tags'],
-        "update": ['quoting', 'column_types'],
+        "update": ['quoting', 'column_types', 'meta'],
     }
 
     @classmethod
@@ -406,6 +407,10 @@ class NodeConfig(BaseConfig):
     )
     full_refresh: Optional[bool] = None
     on_schema_change: Optional[str] = 'ignore'
+    meta: Dict[str, Any] = field(
+        default_factory=dict,
+        metadata=MergeBehavior.Update.meta(),
+    )
 
     @classmethod
     def __pre_deserialize__(cls, data):

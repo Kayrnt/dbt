@@ -155,6 +155,10 @@ class ParsedNodeMixins(dbtClassMixin):
         self.columns = patch.columns
         self.meta = patch.meta
         self.docs = patch.docs
+        if patch.config:
+            pass  # for now. reorganizing code...
+            # we need to re-do the 'update_parsed_node_config' steps, i.e.
+            # apply dbt_project config, patch config, and model file config
         if flags.STRICT_MODE:
             # It seems odd that an instance can be invalid
             # Maybe there should be validation or restrictions
@@ -203,6 +207,7 @@ class ParsedNodeDefaults(ParsedNodeMandatory):
     deferred: bool = False
     unrendered_config: Dict[str, Any] = field(default_factory=dict)
     created_at: int = field(default_factory=lambda: int(time.time()))
+    config_call_dict: Dict[str, Any] = field(default_factory=dict)
 
     def write_node(self, target_path: str, subdirectory: str, payload: str):
         if (os.path.basename(self.path) ==
@@ -228,6 +233,11 @@ class ParsedNode(ParsedNodeDefaults, ParsedNodeMixins, SerializableType):
 
     def _serialize(self):
         return self.to_dict()
+
+    def __post_serialize__(self, dct):
+        if 'config_call_dict' in dct:
+            del dct['config_call_dict']
+        return dct
 
     @classmethod
     def _deserialize(cls, dct: Dict[str, int]):
@@ -456,6 +466,7 @@ class ParsedPatch(HasYamlMetadata, Replaceable):
     description: str
     meta: Dict[str, Any]
     docs: Docs
+    config: Dict[str, Any]
 
 
 # The parsed node update is only the 'patch', not the test. The test became a

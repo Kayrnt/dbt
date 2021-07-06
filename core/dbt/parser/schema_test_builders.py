@@ -320,6 +320,28 @@ class TestBuilder(Generic[Testable]):
     def fail_calc(self) -> Optional[str]:
         return self.modifiers.get('fail_calc')
 
+    def get_static_config(self):
+        config = {}
+        if self.alias is not None:
+            config['alias'] = self.alias
+        if self.severity is not None:
+            config['severity'] = self.severity
+        if self.enabled is not None:
+            config['enabled'] = self.enabled
+        if self.where is not None:
+            config['where'] = self.where
+        if self.limit is not None:
+            config['limit'] = self.limit
+        if self.warn_if is not None:
+            config['warn_if'] = self.warn_if
+        if self.error_if is not None:
+            config['error_id'] = self.error_if
+        if self.fail_calc is not None:
+            config['fail_calc'] = self.fail_calc
+        if self.store_failures is not None:
+            config['store_failures'] = self.store_failures
+        return config
+
     def tags(self) -> List[str]:
         tags = self.modifiers.get('tags', [])
         if isinstance(tags, str):

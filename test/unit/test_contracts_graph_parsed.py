@@ -77,6 +77,7 @@ def populated_node_config_dict():
         'vars': {},
         'extra': 'even more',
         'on_schema_change': 'ignore',
+        'meta': {},
     }
 
 
@@ -155,7 +156,8 @@ def base_parsed_model_dict():
             'quoting': {},
             'tags': [],
             'vars': {},
-            'on_schema_change': 'ignore'
+            'on_schema_change': 'ignore',
+            'meta': {},
         },
         'deferred': False,
         'docs': {'show': True},
@@ -246,7 +248,8 @@ def complex_parsed_model_dict():
             'quoting': {},
             'tags': [],
             'vars': {'foo': 100},
-            'on_schema_change': 'ignore'
+            'on_schema_change': 'ignore',
+            'meta': {},
         },
         'docs': {'show': True},
         'columns': {
@@ -442,7 +445,8 @@ def basic_parsed_seed_dict():
             'quoting': {},
             'tags': [],
             'vars': {},
-            'on_schema_change': 'ignore'
+            'on_schema_change': 'ignore',
+            'meta': {},
         },
         'deferred': False,
         'docs': {'show': True},
@@ -536,7 +540,8 @@ def complex_parsed_seed_dict():
             'tags': [],
             'vars': {},
             'quote_columns': True,
-            'on_schema_change': 'ignore'
+            'on_schema_change': 'ignore',
+            'meta': {},
         },
         'deferred': False,
         'docs': {'show': True},
@@ -678,6 +683,7 @@ def basic_parsed_model_patch_dict():
                 'tags': [],
             },
         },
+        'config': {},
     }
 
 
@@ -692,6 +698,7 @@ def basic_parsed_model_patch_object():
         columns={'a': ColumnInfo(name='a', description='a text field', meta={})},
         docs=Docs(),
         meta={},
+        config={},
     )
 
 
@@ -789,7 +796,8 @@ def base_parsed_hook_dict():
             'quoting': {},
             'tags': [],
             'vars': {},
-            'on_schema_change': 'ignore'
+            'on_schema_change': 'ignore',
+            'meta': {},
         },
         'docs': {'show': True},
         'columns': {},
@@ -860,7 +868,8 @@ def complex_parsed_hook_dict():
             'quoting': {},
             'tags': [],
             'vars': {},
-            'on_schema_change': 'ignore'
+            'on_schema_change': 'ignore',
+            'meta': {},
         },
         'docs': {'show': True},
         'columns': {
@@ -1009,6 +1018,7 @@ def basic_parsed_schema_test_dict():
             'error_if': '!= 0',
             'fail_calc': 'count(*)',
             'on_schema_change': 'ignore',
+            'meta': {},
         },
         'docs': {'show': True},
         'columns': {},
@@ -1088,6 +1098,7 @@ def complex_parsed_schema_test_dict():
             'fail_calc': 'count(*)',
             'extra_key': 'extra value',
             'on_schema_change': 'ignore',
+            'meta': {},
         },
         'docs': {'show': False},
         'columns': {
@@ -1208,6 +1219,7 @@ def basic_timestamp_snapshot_config_dict():
         'target_database': 'some_snapshot_db',
         'target_schema': 'some_snapshot_schema',
         'on_schema_change': 'ignore',
+        'meta': {},
     }
 
 
@@ -1241,6 +1253,7 @@ def complex_timestamp_snapshot_config_dict():
         'strategy': 'timestamp',
         'updated_at': 'last_update',
         'on_schema_change': 'ignore',
+        'meta': {},
     }
 
 
@@ -1298,6 +1311,7 @@ def basic_check_snapshot_config_dict():
         'strategy': 'check',
         'check_cols': 'all',
         'on_schema_change': 'ignore',
+        'meta': {},
     }
 
 
@@ -1331,6 +1345,7 @@ def complex_set_snapshot_config_dict():
         'strategy': 'check',
         'check_cols': ['a', 'b'],
         'on_schema_change': 'ignore',
+        'meta': {},
     }
 
 
@@ -1436,7 +1451,8 @@ def basic_timestamp_snapshot_dict():
             'unique_key': 'id',
             'strategy': 'timestamp',
             'updated_at': 'last_update',
-            'on_schema_change': 'ignore'
+            'on_schema_change': 'ignore',
+            'meta': {},
         },
         'docs': {'show': True},
         'columns': {},
@@ -1568,7 +1584,8 @@ def basic_check_snapshot_dict():
             'unique_key': 'id',
             'strategy': 'check',
             'check_cols': 'all',
-            'on_schema_change': 'ignore'
+            'on_schema_change': 'ignore',
+            'meta': {},
         },
         'docs': {'show': True},
         'columns': {},
@@ -1717,6 +1734,7 @@ def populated_parsed_node_patch_dict():
         'meta': {'key': ['value']},
         'yaml_key': 'models',
         'package_name': 'test',
+        'config': {},
     }
 
 
@@ -1731,6 +1749,7 @@ def populated_parsed_node_patch_object():
         yaml_key='models',
         package_name='test',
         docs=Docs(show=False),
+        config={},
     )
 
 

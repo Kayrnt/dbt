@@ -1,0 +1,18 @@
+version: 2
+sources:
+  - name: raw
+    database: "{{ target.database }}"
+    schema: "{{ target.schema }}"
+    tables:
+      - name: 'some_seed'
+        columns:
+          - name: id
+
+models:
+  - name: model
+    description: "This is a model description"
+    config:
+        tags: ['tag_in_schema']
+        meta:
+            owner: 'Julie Smith'
+        materialization: view
