@@ -192,7 +192,7 @@ class TestBuilder(Generic[Testable]):
     # kwargs representing test configs
     MODIFIER_ARGS = (
         'severity', 'tags', 'enabled', 'where', 'limit', 'warn_if', 'error_if',
-        'fail_calc', 'store_failures'
+        'fail_calc', 'store_failures', 'meta',
     )
 
     def __init__(
@@ -320,6 +320,10 @@ class TestBuilder(Generic[Testable]):
     def fail_calc(self) -> Optional[str]:
         return self.modifiers.get('fail_calc')
 
+    @property
+    def meta(self) -> Optional[dict]:
+        return self.modifiers.get('meta')
+
     def get_static_config(self):
         config = {}
         if self.alias is not None:
@@ -340,6 +344,8 @@ class TestBuilder(Generic[Testable]):
             config['fail_calc'] = self.fail_calc
         if self.store_failures is not None:
             config['store_failures'] = self.store_failures
+        if self.meta is not None:
+            config['meta'] = self.meta
         return config
 
     def tags(self) -> List[str]:

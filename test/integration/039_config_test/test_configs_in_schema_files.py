@@ -78,5 +78,13 @@ class TestSchemaFileConfigs(DBTIntegrationTest):
         models = self.get_models_in_schema()
         self.assertEqual(models['model'], 'table')
         self.assertTablesEqual('some_seed', 'model')
+        # look for test meta
+        schema_file_id = model_node.patch_path
+        schema_file = manifest.files[schema_file_id]
+        tests = schema_file.get_tests('models', 'model')
+        self.assertIn(tests[0], manifest.nodes)
+        test = manifest.nodes[tests[0]]
+        expected_meta = {'owner': 'Simple Simon'}
+        self.assertEqual(test.config.meta, expected_meta)
 
 

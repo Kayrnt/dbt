@@ -148,6 +148,7 @@ class ParsedNodeMixins(dbtClassMixin):
         """Given a ParsedNodePatch, add the new information to the node."""
         # explicitly pick out the parts to update so we don't inadvertently
         # step on the model name or anything
+        # Note: config should already be updated
         self.patch_path: Optional[str] = patch.file_id
         # update created_at so process_docs will run in partial parsing
         self.created_at = int(time.time())
@@ -155,10 +156,6 @@ class ParsedNodeMixins(dbtClassMixin):
         self.columns = patch.columns
         self.meta = patch.meta
         self.docs = patch.docs
-        if patch.config:
-            pass  # for now. reorganizing code...
-            # we need to re-do the 'update_parsed_node_config' steps, i.e.
-            # apply dbt_project config, patch config, and model file config
         if flags.STRICT_MODE:
             # It seems odd that an instance can be invalid
             # Maybe there should be validation or restrictions

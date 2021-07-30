@@ -16,3 +16,10 @@ models:
         meta:
             owner: 'Julie Smith'
         materialization: view
+    columns:
+      - name: id
+        tests:
+          - not_null:
+              meta:
+                  owner: 'Simple Simon'
+
